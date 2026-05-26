@@ -29,10 +29,16 @@ class Transaction:
 
     def __init__(self, amount, category, description, transaction_type, date):
         # Hier Attribute speichern
+        self.amount = amount
+        self.category = category
+        self.description = description
+        self.transaction_type = transaction_type
+        self.date = date
         pass
 
     def display(self):
         # Gibt eine Buchung lesbar aus
+        print(f"{self.date} | {self.transaction_type.upper()} | {self.category} | {self.amount}€ | {self.description}")
         pass
 
 
@@ -49,14 +55,19 @@ class CostManager:
 
     def __init__(self):
         # Hier eine Liste für alle Buchungen erstellen
+        self.transactions = []
         pass
 
     def add_income(self, amount, category, description, date):
         # Neue Einnahme erstellen und speichern
+        transaction = Transaction(amount, category, description, "income", date)
+        self.transactions.append(transaction)
         pass
 
     def add_expense(self, amount, category, description, date):
         # Neue Ausgabe erstellen und speichern
+        transaction = Transaction(amount, category, description, "expense", date)
+        self.transactions.append(transaction)
         pass
 
     def show_all_transactions(self):
@@ -73,7 +84,13 @@ class CostManager:
 
     def calculate_balance(self):
         # Einnahmen minus Ausgaben berechnen
-        pass
+        balance = 0
+        for t in self.transactions:
+            if t.transaction_type == "income":
+                balance += t.amount
+            else:
+                balance -= t.amount
+        return balance
 
     def filter_by_category(self, category):
         # Nur Buchungen einer bestimmten Kategorie anzeigen
@@ -104,6 +121,13 @@ def main():
     - der Benutzer eine Option auswählen
     - je nach Auswahl eine Methode aufgerufen werden
     """
+    manager = CostManager()
+
+    manager.add_income(1000, "Salary", "Monthly salary", "2025-06-01")
+    manager.add_expense(200, "Food", "Groceries", "2025-06-02")
+
+    print("Current balance:", manager.calculate_balance())
+
     pass
 
 
