@@ -1,5 +1,3 @@
-# kosten_manager.py
-
 """
 Projekt: Kosten Manager
 Ziel:
