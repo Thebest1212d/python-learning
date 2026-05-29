@@ -78,10 +78,20 @@ class CostManager:
 
     def calculate_total_income(self):
         # Alle Einnahmen zusammenrechnen
+        total = 0
+        for i in self.transactions:
+            if i.transaction_type == "income":
+                total += i.amount
+        return total
         pass
 
     def calculate_total_expenses(self):
         # Alle Ausgaben zusammenrechnen
+        total = 0
+        for i in self.transactions:
+            if i.transaction_type == "expense":
+                total += i.amount
+        return total
         pass
 
     def calculate_balance(self):
@@ -131,6 +141,12 @@ def main():
     print("Current balance:", manager.calculate_balance())
 
     manager.show_all_transactions()
+
+    total_income = manager.calculate_total_income()
+    print("Total income:", total_income)
+
+    total_expense = manager.calculate_total_expenses()
+    print("Total expense:", total_expense)
 
     pass
 
