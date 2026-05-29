@@ -72,6 +72,8 @@ class CostManager:
 
     def show_all_transactions(self):
         # Alle gespeicherten Buchungen anzeigen
+        for i in self.transactions:
+            i.display()
         pass
 
     def calculate_total_income(self):
@@ -127,6 +129,8 @@ def main():
     manager.add_expense(200, "Food", "Groceries", "2025-06-02")
 
     print("Current balance:", manager.calculate_balance())
+
+    manager.show_all_transactions()
 
     pass
 
