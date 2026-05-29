@@ -34,12 +34,10 @@ class Transaction:
         self.description = description
         self.transaction_type = transaction_type
         self.date = date
-        pass
 
     def display(self):
         # Gibt eine Buchung lesbar aus
         print(f"{self.date} | {self.transaction_type.upper()} | {self.category} | {self.amount}€ | {self.description}")
-        pass
 
 
 class CostManager:
@@ -56,25 +54,21 @@ class CostManager:
     def __init__(self):
         # Hier eine Liste für alle Buchungen erstellen
         self.transactions = []
-        pass
 
     def add_income(self, amount, category, description, date):
         # Neue Einnahme erstellen und speichern
         transaction = Transaction(amount, category, description, "income", date)
         self.transactions.append(transaction)
-        pass
 
     def add_expense(self, amount, category, description, date):
         # Neue Ausgabe erstellen und speichern
         transaction = Transaction(amount, category, description, "expense", date)
         self.transactions.append(transaction)
-        pass
 
     def show_all_transactions(self):
         # Alle gespeicherten Buchungen anzeigen
         for i in self.transactions:
             i.display()
-        pass
 
     def calculate_total_income(self):
         # Alle Einnahmen zusammenrechnen
@@ -83,7 +77,6 @@ class CostManager:
             if i.transaction_type == "income":
                 total += i.amount
         return total
-        pass
 
     def calculate_total_expenses(self):
         # Alle Ausgaben zusammenrechnen
@@ -92,7 +85,6 @@ class CostManager:
             if i.transaction_type == "expense":
                 total += i.amount
         return total
-        pass
 
     def calculate_balance(self):
         # Einnahmen minus Ausgaben berechnen
@@ -106,7 +98,15 @@ class CostManager:
 
     def filter_by_category(self, category):
         # Nur Buchungen einer bestimmten Kategorie anzeigen
-        pass
+        found = False
+
+        for i in self.transactions:
+            if i.category.lower() == category.lower():
+                i.display()
+                found = True
+            
+        if (found == False):
+            print("No info found")
 
 
 def show_menu():
@@ -120,7 +120,6 @@ def show_menu():
     4. Kontostand anzeigen
     5. Beenden
     """
-    pass
 
 
 def main():
@@ -148,7 +147,7 @@ def main():
     total_expense = manager.calculate_total_expenses()
     print("Total expense:", total_expense)
 
-    pass
+    manager.filter_by_category("food")
 
 
 if __name__ == "__main__":
