@@ -110,16 +110,17 @@ class CostManager:
 
 
 def show_menu():
-    """
-    Zeigt dem Benutzer ein Menü.
+    #Zeigt dem Benutzer ein Menü.
 
-    Beispiel:
+        print("""
+    ==== COST MANAGER ====
     1. Einnahme hinzufügen
     2. Ausgabe hinzufügen
     3. Alle Buchungen anzeigen
     4. Kontostand anzeigen
     5. Beenden
-    """
+    """)
+
 
 
 def main():
@@ -134,21 +135,34 @@ def main():
     """
     manager = CostManager()
 
-    manager.add_income(1000, "Salary", "Monthly salary", "2025-06-01")
-    manager.add_expense(200, "Food", "Groceries", "2025-06-02")
+    while True:
+        show_menu()
+        cont = input("Wählen Sie bitte eine Ziffer: ")
 
-    print("Current balance:", manager.calculate_balance())
+        if (cont == "1"):
+            manager.add_income(1000, "Salary", "Monthly salary", "2025-06-01")
+            print("Income added!")
 
-    manager.show_all_transactions()
+        elif (cont == "2"):
+            manager.add_expense(200, "Food", "Groceries", "2025-06-02")
+            print("Expence added!")
+        
+        elif (cont == "3"):
+            manager.show_all_transactions()      
 
-    total_income = manager.calculate_total_income()
-    print("Total income:", total_income)
+        elif (cont == "4"):
+            print("Current balance:", manager.calculate_balance())
 
-    total_expense = manager.calculate_total_expenses()
-    print("Total expense:", total_expense)
+            total_income = manager.calculate_total_income()
+            print("Total income:", total_income)
 
-    manager.filter_by_category("food")
+            total_expense = manager.calculate_total_expenses()
+            print("Total expense:", total_expense)
 
+            manager.filter_by_category("food")
+            
+        elif (cont == "5"):
+            break
 
 if __name__ == "__main__":
     main()
