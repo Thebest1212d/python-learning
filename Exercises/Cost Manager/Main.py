@@ -118,7 +118,8 @@ def show_menu():
     2. Ausgabe hinzufügen
     3. Alle Buchungen anzeigen
     4. Kontostand anzeigen
-    5. Beenden
+    5. Nach Kategorie filtern
+    6. Beenden
     """)
 
 
@@ -140,11 +141,19 @@ def main():
         cont = input("Wählen Sie bitte eine Ziffer: ")
 
         if (cont == "1"):
-            manager.add_income(1000, "Salary", "Monthly salary", "2025-06-01")
+            amount = float(input("Betrag: "))
+            category = input("Kategorie: ")
+            description = input("Beschreibung: ")
+            date = input("Datum: ")
+            manager.add_income(amount, category, description, date)
             print("Income added!")
 
         elif (cont == "2"):
-            manager.add_expense(200, "Food", "Groceries", "2025-06-02")
+            amount = float(input("Betrag: "))
+            category = input("Kategorie: ")
+            description = input("Beschreibung: ")
+            date = input("Datum: ")
+            manager.add_expense(amount, category, description, date)
             print("Expence added!")
         
         elif (cont == "3"):
@@ -159,9 +168,13 @@ def main():
             total_expense = manager.calculate_total_expenses()
             print("Total expense:", total_expense)
 
-            manager.filter_by_category("food")
+            #manager.filter_by_category("food")
             
         elif (cont == "5"):
+            category = input("Kategorie eingeben: ")
+            manager.filter_by_category(category)
+
+        elif (cont == "6"):
             break
 
 if __name__ == "__main__":
