@@ -14,6 +14,56 @@ Mögliche Funktionen:
 - Nach Kategorie filtern
 """
 
+import sqlite3
+import os
+
+class SQLiteStorage: 
+    def __init__(self):
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+        db_path = os.path.join(BASE_DIR, "costmanager.db")
+        self.conn = sqlite3.connect(db_path)
+
+        self.cursor = self.conn.cursor()
+        self.cursor.execute("""
+            CREATE TABLE IF NOT EXISTS transactions (
+				id INTEGER PRIMARY KEY AUTOINCREMENT,
+				amount REAL NOT NULL,
+				category TEXT NOT NULL,
+				description TEXT NOT NULL,
+				transaction_type TEXT NOT NULL
+					CHECK(transaction_type IN ('income', 'expense')),
+				date TEXT NOT NULL
+            )
+        """)
+        self.conn.commit()
+
+    def save_transaction(self, amount, category, description, transaction_type, date):
+        sql = """
+        INSERT INTO transactions 
+        (amount, category, description, transaction_type, date)
+        VALUES (?, ?, ?, ?, ?)
+        """
+        
+        self.cursor.execute(sql, (amount, category, description, transaction_type, date))
+        self.conn.commit()
+
+    def get_all_transactions(self):
+        self.cursor.execute("SELECT * FROM transactions")
+        rows = self.cursor.fetchall()
+
+        transactions = []
+
+        for row in rows:
+            amount = row[1]
+            category = row[2]
+            description = row[3]
+            transaction_type = row[4]
+            date = row[5]
+
+            transaction = Transaction(amount, category, description, transaction_type, date)
+            transactions.append(transaction)
+
+        return transactions   
 
 class Transaction:
     """
@@ -53,43 +103,45 @@ class CostManager:
 
     def __init__(self):
         # Hier eine Liste für alle Buchungen erstellen
-        self.transactions = []
+        self.storage = SQLiteStorage()
 
     def add_income(self, amount, category, description, date):
         # Neue Einnahme erstellen und speichern
-        transaction = Transaction(amount, category, description, "income", date)
-        self.transactions.append(transaction)
+        self.storage.save_transaction(amount, category, description, "income", date)
 
     def add_expense(self, amount, category, description, date):
         # Neue Ausgabe erstellen und speichern
-        transaction = Transaction(amount, category, description, "expense", date)
-        self.transactions.append(transaction)
+        self.storage.save_transaction(amount, category, description, "expense", date)
 
     def show_all_transactions(self):
         # Alle gespeicherten Buchungen anzeigen
-        for i in self.transactions:
-            i.display()
+        transactions = self.storage.get_all_transactions()
+        for t in transactions:
+            t.display()
 
     def calculate_total_income(self):
         # Alle Einnahmen zusammenrechnen
         total = 0
-        for i in self.transactions:
-            if i.transaction_type == "income":
-                total += i.amount
+        transactions = self.storage.get_all_transactions()
+        for t in transactions:
+            if t.transaction_type == "income":
+                total += t.amount
         return total
 
     def calculate_total_expenses(self):
         # Alle Ausgaben zusammenrechnen
         total = 0
-        for i in self.transactions:
-            if i.transaction_type == "expense":
-                total += i.amount
+        transactions = self.storage.get_all_transactions()
+        for t in transactions:
+            if t.transaction_type == "expense":
+                total += t.amount
         return total
 
     def calculate_balance(self):
         # Einnahmen minus Ausgaben berechnen
         balance = 0
-        for t in self.transactions:
+        transactions = self.storage.get_all_transactions()
+        for t in transactions:
             if t.transaction_type == "income":
                 balance += t.amount
             else:
@@ -99,8 +151,8 @@ class CostManager:
     def filter_by_category(self, category):
         # Nur Buchungen einer bestimmten Kategorie anzeigen
         found = False
-
-        for i in self.transactions:
+        transactions = self.storage.get_all_transactions()
+        for i in transactions:
             if i.category.lower() == category.lower():
                 i.display()
                 found = True
@@ -154,7 +206,7 @@ def main():
             description = input("Beschreibung: ")
             date = input("Datum: ")
             manager.add_expense(amount, category, description, date)
-            print("Expence added!")
+            print("Expense added!")
         
         elif (cont == "3"):
             manager.show_all_transactions()      
