@@ -64,6 +64,12 @@ class SQLiteStorage:
             transactions.append(transaction)
 
         return transactions   
+    
+    def get_total_income(self):
+        sql = "SELECT SUM(amount) FROM transactions WHERE transaction_type = ?"
+        self.cursor.execute(sql, ("income",))
+        result = self.cursor.fetchone()
+        return result[0] if result[0] is not None else 0
 
 class Transaction:
     """
@@ -120,13 +126,14 @@ class CostManager:
             t.display()
 
     def calculate_total_income(self):
-        # Alle Einnahmen zusammenrechnen
-        total = 0
-        transactions = self.storage.get_all_transactions()
-        for t in transactions:
-            if t.transaction_type == "income":
-                total += t.amount
-        return total
+        return self.storage.get_total_income()
+        # # Alle Einnahmen zusammenrechnen
+        # total = 0
+        # transactions = self.storage.get_all_transactions()
+        # for t in transactions:
+        #     if t.transaction_type == "income":
+        #         total += t.amount
+        # return total
 
     def calculate_total_expenses(self):
         # Alle Ausgaben zusammenrechnen
