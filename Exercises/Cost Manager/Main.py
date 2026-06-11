@@ -70,6 +70,12 @@ class SQLiteStorage:
         self.cursor.execute(sql, ("income",))
         result = self.cursor.fetchone()
         return result[0] if result[0] is not None else 0
+    
+    def get_total_expenses(self):
+        sql = "SELECT SUM(amount) FROM transactions WHERE transaction_type = ?"
+        self.cursor.execute(sql, ("expense",))
+        result = self.cursor.fetchone()
+        return result[0] if result[0] is not None else 0
 
 class Transaction:
     """
@@ -127,6 +133,8 @@ class CostManager:
 
     def calculate_total_income(self):
         return self.storage.get_total_income()
+    
+        # Frühere manuelle Berechnung, jetzt in der Storage-Klasse gekapselt.
         # # Alle Einnahmen zusammenrechnen
         # total = 0
         # transactions = self.storage.get_all_transactions()
@@ -136,6 +144,9 @@ class CostManager:
         # return total
 
     def calculate_total_expenses(self):
+        return self.storage.get_total_expenses()
+
+        # Frühere manuelle Berechnung, jetzt in der Storage-Klasse gekapselt.
         # Alle Ausgaben zusammenrechnen
         total = 0
         transactions = self.storage.get_all_transactions()
