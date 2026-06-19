@@ -54,13 +54,14 @@ class SQLiteStorage:
         transactions = []
 
         for row in rows:
+            transaction_id = row[0]
             amount = row[1]
             category = row[2]
             description = row[3]
             transaction_type = row[4]
             date = row[5]
 
-            transaction = Transaction(amount, category, description, transaction_type, date)
+            transaction = Transaction(transaction_id, amount, category, description, transaction_type, date)
             transactions.append(transaction)
 
         return transactions   
@@ -76,6 +77,20 @@ class SQLiteStorage:
         self.cursor.execute(sql, ("expense",))
         result = self.cursor.fetchone()
         return result[0] if result[0] is not None else 0
+    
+    def delete_transaction(self, transaction_id):
+        sql = "DELETE FROM transactions WHERE id = ?"
+        self.cursor.execute(sql, (transaction_id,))
+        self.conn.commit()
+        return self.cursor.rowcount
+
+    def update_transaction(self, transaction_id, amount, category, description, transaction_type, date):
+        sql = """UPDATE transactions
+        SET amount = ?, category = ?, description = ?, transaction_type = ?, date = ?
+        WHERE id = ?"""
+        self.cursor.execute(sql, (amount, category, description, transaction_type, date, transaction_id))
+        self.conn.commit()
+        return self.cursor.rowcount
 
 class Transaction:
     """
@@ -89,17 +104,18 @@ class Transaction:
     - date: Datum der Buchung
     """
 
-    def __init__(self, amount, category, description, transaction_type, date):
+    def __init__(self, transaction_id, amount, category, description, transaction_type, date):
         # Hier Attribute speichern
         self.amount = amount
         self.category = category
         self.description = description
         self.transaction_type = transaction_type
         self.date = date
+        self.transaction_id = transaction_id
 
     def display(self):
         # Gibt eine Buchung lesbar aus
-        print(f"{self.date} | {self.transaction_type.upper()} | {self.category} | {self.amount}€ | {self.description}")
+        print(f"ID: {self.transaction_id} | {self.date} | {self.transaction_type.upper()} | {self.category} | {self.amount}€ | {self.description}")
 
 
 class CostManager:
@@ -148,12 +164,18 @@ class CostManager:
 
         # Frühere manuelle Berechnung, jetzt in der Storage-Klasse gekapselt.
         # Alle Ausgaben zusammenrechnen
-        total = 0
-        transactions = self.storage.get_all_transactions()
-        for t in transactions:
-            if t.transaction_type == "expense":
-                total += t.amount
-        return total
+        # total = 0
+        # transactions = self.storage.get_all_transactions()
+        # for t in transactions:
+        #     if t.transaction_type == "expense":
+        #         total += t.amount
+        # return total
+
+    def delete_transaction(self, transaction_id):
+        return self.storage.delete_transaction(transaction_id)
+    
+    def update_transaction(self, transaction_id, amount, category, description, transaction_type, date):
+        return self.storage.update_transaction(transaction_id, amount, category, description, transaction_type, date)
 
     def calculate_balance(self):
         # Einnahmen minus Ausgaben berechnen
@@ -189,7 +211,9 @@ def show_menu():
     3. Alle Buchungen anzeigen
     4. Kontostand anzeigen
     5. Nach Kategorie filtern
-    6. Beenden
+    6. Transaktion löschen
+    7. Transaktion bearbeiten
+    8. Beenden
     """)
 
 
@@ -245,6 +269,37 @@ def main():
             manager.filter_by_category(category)
 
         elif (cont == "6"):
+            transaction_id = int(input("ID: "))
+            deleted = manager.delete_transaction(transaction_id)
+
+            if deleted:
+                print("Deleted successfully")
+            else:
+                print("Transaction not found")
+
+        elif (cont == "7"):
+            transaction_id = int(input("ID: "))
+            amount = float(input("Neuer Betrag: "))
+            category = input("Neue Kategorie: ")
+            description = input("Neue Beschreibung: ")
+            transaction_type = input("income/expense: ")
+            date = input("Neues Datum: ")
+
+            updated = manager.update_transaction(
+                transaction_id,
+                amount,
+                category,
+                description,
+                transaction_type,
+                date
+            )
+
+            if updated:
+                print("Transaction updated")
+            else:
+                print("Transaction not found")
+
+        elif (cont == "8"):
             break
 
 if __name__ == "__main__":
