@@ -84,6 +84,13 @@ class SQLiteStorage:
         self.conn.commit()
         return self.cursor.rowcount
 
+    def update_transaction(self, transaction_id, amount, category, description, transaction_type, date):
+        sql = """UPDATE transactions
+        SET amount = ?, category = ?, description = ?, transaction_type = ?, date = ?
+        WHERE id = ?"""
+        self.cursor.execute(sql, (amount, category, description, transaction_type, date, transaction_id))
+        self.conn.commit()
+        return self.cursor.rowcount
 
 class Transaction:
     """
@@ -166,6 +173,9 @@ class CostManager:
 
     def delete_transaction(self, transaction_id):
         return self.storage.delete_transaction(transaction_id)
+    
+    def update_transaction(self, transaction_id, amount, category, description, transaction_type, date):
+        return self.storage.update_transaction(transaction_id, amount, category, description, transaction_type, date)
 
     def calculate_balance(self):
         # Einnahmen minus Ausgaben berechnen
@@ -202,7 +212,8 @@ def show_menu():
     4. Kontostand anzeigen
     5. Nach Kategorie filtern
     6. Transaktion löschen
-    7. Beenden
+    7. Transaktion bearbeiten
+    8. Beenden
     """)
 
 
@@ -267,6 +278,28 @@ def main():
                 print("Transaction not found")
 
         elif (cont == "7"):
+            transaction_id = int(input("ID: "))
+            amount = float(input("Neuer Betrag: "))
+            category = input("Neue Kategorie: ")
+            description = input("Neue Beschreibung: ")
+            transaction_type = input("income/expense: ")
+            date = input("Neues Datum: ")
+
+            updated = manager.update_transaction(
+                transaction_id,
+                amount,
+                category,
+                description,
+                transaction_type,
+                date
+            )
+
+            if updated:
+                print("Transaction updated")
+            else:
+                print("Transaction not found")
+
+        elif (cont == "8"):
             break
 
 if __name__ == "__main__":
