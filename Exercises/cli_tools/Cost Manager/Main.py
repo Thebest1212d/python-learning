@@ -220,7 +220,7 @@ def main():
                 description = input("Beschreibung: ")
                 date = input("Datum: ")
                 manager.add_income(amount, category, description, date)
-                print("Income added!")
+                print("Einnahme hinzugefügt!")
             except ValueError:
                 print("Ungültiger Betrag")
 
@@ -230,19 +230,19 @@ def main():
             description = input("Beschreibung: ")
             date = input("Datum: ")
             manager.add_expense(amount, category, description, date)
-            print("Expense added!")
+            print("Ausgabe hinzugefügt!")
         
         elif (cont == "3"):
             manager.show_all_transactions()      
 
         elif (cont == "4"):
-            print("Current balance:", manager.calculate_balance())
+            print("Aktueller Kontostand:", manager.calculate_balance())
 
             total_income = manager.calculate_total_income()
-            print("Total income:", total_income)
+            print("Gesamteinnahmen:", total_income)
 
             total_expense = manager.calculate_total_expenses()
-            print("Total expense:", total_expense)
+            print("Gesamtausgaben:", total_expense)
 
             #manager.filter_by_category("food")
             
@@ -255,9 +255,9 @@ def main():
             deleted = manager.delete_transaction(transaction_id)
 
             if deleted:
-                print("Deleted successfully")
+                print("Transaktion gelöscht")
             else:
-                print("Transaction not found")
+                print("Transaktion nicht gefunden")
 
         elif (cont == "7"):
             transaction_id = int(input("ID: "))
@@ -277,9 +277,9 @@ def main():
             )
 
             if updated:
-                print("Transaction updated")
+                print("Transaktion aktualisiert")
             else:
-                print("Transaction not found")
+                print("Transaktion nicht gefunden")
 
         elif (cont == "8"):
             break
