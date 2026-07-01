@@ -225,12 +225,15 @@ def main():
                 print("Ungültiger Betrag")
 
         elif (cont == "2"):
-            amount = float(input("Betrag: "))
-            category = input("Kategorie: ")
-            description = input("Beschreibung: ")
-            date = input("Datum: ")
-            manager.add_expense(amount, category, description, date)
-            print("Ausgabe hinzugefügt!")
+            try:
+                amount = float(input("Betrag: "))
+                category = input("Kategorie: ")
+                description = input("Beschreibung: ")
+                date = input("Datum: ")
+                manager.add_expense(amount, category, description, date)
+                print("Ausgabe hinzugefügt!")
+            except ValueError:
+                print("Ungültiger Betrag")
         
         elif (cont == "3"):
             manager.show_all_transactions()      
@@ -251,21 +254,32 @@ def main():
             manager.filter_by_category(category)
 
         elif (cont == "6"):
-            transaction_id = int(input("ID: "))
-            deleted = manager.delete_transaction(transaction_id)
+            try:        
+                transaction_id = int(input("ID: "))
+                deleted = manager.delete_transaction(transaction_id)
 
-            if deleted:
-                print("Transaktion gelöscht")
-            else:
-                print("Transaktion nicht gefunden")
+                if deleted:
+                    print("Transaktion gelöscht")
+                else:
+                    print("Transaktion nicht gefunden")
+            except ValueError:
+                print("Ungültige ID")            
 
         elif (cont == "7"):
-            transaction_id = int(input("ID: "))
-            amount = float(input("Neuer Betrag: "))
-            category = input("Neue Kategorie: ")
-            description = input("Neue Beschreibung: ")
-            transaction_type = input("income/expense: ")
-            date = input("Neues Datum: ")
+            try:
+                transaction_id = int(input("ID: "))
+                amount = float(input("Neuer Betrag: "))
+                category = input("Neue Kategorie: ")
+                description = input("Neue Beschreibung: ")
+                transaction_type = input("income/expense: ")
+                if transaction_type not in ("income", "expense"):
+                    print("Ungültiger Buchungstyp")
+                    continue
+
+                date = input("Neues Datum: ")
+            except ValueError:
+                print("Ungültiger Betrag") 
+                continue
 
             updated = manager.update_transaction(
                 transaction_id,
