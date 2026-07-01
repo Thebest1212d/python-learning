@@ -36,11 +36,16 @@ The repository will continue to evolve as I complete new projects and learn addi
 
 ---
 
-# 🚀 Current Projects
+# 🚀 Completed Projects and Exercises
 
 | Project | Category | Description | Status |
 |---------|----------|-------------|--------|
 | Cost Manager | CLI Tool | Command-line application for managing income and expenses with SQLite and full CRUD functionality | ✅ Completed |
+| Unit Converter | CLI Exercise | Console-based unit converter for temperature, distance, and weight conversions | ✅ Completed |
+| Vocabulary Trainer | CLI Exercise | Vocabulary quiz that loads words from a JSON file, asks random questions without repetition, and calculates the success rate | ✅ Completed |
+| Futurecoder Python Course | Course Practice | Completed Python course exercises covering fundamentals such as variables, conditions, loops, functions, lists, and strings | ✅ Completed |
+
+More projects and exercises will be added over time.
 
 More projects will be added over time.
 
