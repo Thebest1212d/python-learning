@@ -185,8 +185,7 @@ class CostManager:
 
 def show_menu():
     #Zeigt dem Benutzer ein Menü.
-
-        print("""
+    print("""
     ==== COST MANAGER ====
     1. Einnahme hinzufügen
     2. Ausgabe hinzufügen
