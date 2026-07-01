@@ -1,127 +1,93 @@
-# Python Learnings 🐍
+# Python Learning 🐍
 
-## 📖 Загальна концепція
+Welcome to my Python learning repository!
 
-Цей репозиторій — структурований практичний простір для розвитку в Python.
-Його головна ідея — створення реальних інструментів та застосунків,
-а не лише вивчення теорії.
-
-Репозиторій має модульну структуру та постійно розширюється новими напрямками і проєктами.
+This repository documents my journey of learning Python by building practical projects instead of only solving isolated exercises. The goal is to continuously improve my programming skills while following good software engineering practices.
 
 ---
 
-## 🎯 Основні принципи
+# 🎯 Goals
 
-- Практичність замість абстрактних вправ
-- Чітка структура папок
-- Кожен проєкт має власну документацію
-- Логічні та зрозумілі коміти
+- Learn Python through real-world projects
+- Improve Object-Oriented Programming (OOP) skills
+- Work with databases (SQLite)
+- Learn Git & GitHub workflows
+- Write clean and maintainable code
+- Build a personal development portfolio
 
 ---
 
-## 🧱 Структура репозиторію
+# 📂 Repository Structure
 
-```
-python-learnings/
+```text
+python-learning/
 │
-├── automation/        # Автоматизація задач
-├── data_processing/   # Обробка та аналіз даних
-├── api_projects/      # Робота з HTTP API
-├── cli_tools/         # Консольні застосунки
-├── experiments/       # Нові ідеї та тестові реалізації
-├── progress.md        # Відстеження прогресу
-└── README.md          # Головна документація
+├── Exercises/      # Learning projects and programming exercises
+├── Projects/       # Larger standalone applications
+├── Experiments/    # Testing new ideas and technologies
+└── README.md
 ```
 
-Структура не є жорсткою — вона розширюється разом із новими напрямками.
+The repository will continue to grow as I learn new technologies and complete new projects.
 
 ---
 
-# 🔎 Напрями розробки
+# 🚀 Current Projects
 
-## 🛠 Automation
-Короткий опис: створення інструментів для автоматизації рутинних задач (файлова система, резервні копії, обробка файлів).
+| Project | Description | Status |
+|---------|-------------|--------|
+| Cost Manager | CLI application with SQLite database and full CRUD functionality | ✅ Completed |
 
-Приклади проєктів:
-- File Organizer
-- Backup Script
-
----
-
-## 📊 Data Processing
-Короткий опис: зчитування, обробка, аналіз та трансформація структурованих даних.
-
-Приклади проєктів:
-- CSV Analyzer
-- Log Parser
+More projects will be added over time.
 
 ---
 
-## 🌐 API Projects
-Короткий опис: інтеграція із зовнішніми сервісами через HTTP‑запити та робота з JSON.
+# 🛠 Technologies
 
-Приклади проєктів:
-- Weather CLI
-- Crypto Tracker
+Currently used technologies include:
 
----
+- Python 3
+- SQLite
+- Object-Oriented Programming (OOP)
+- Git
+- GitHub
 
-## 💻 CLI Tools
-Короткий опис: створення повноцінних консольних інструментів із логікою взаємодії з користувачем.
+Future projects may also include:
 
-Приклади проєктів:
-- Task Manager
-- Password Manager
-
----
-
-# 📋 Загальний чеклист розвитку
-
-## Архітектура
-- [ ] Стандартизувати структуру кожного проєкту
-- [ ] Єдиний формат README для підпроєктів
-- [ ] Впровадити базове логування
-
-## Якість коду
-- [ ] Обробка помилок у кожному проєкті
-- [ ] Читабельні назви змінних
-- [ ] Дотримання PEP8
-- [ ] Мінімізація дублювання коду
-
-## Розширення
-- [ ] Додати новий напрям (за потреби)
-- [ ] Реалізувати щонайменше 1 складніший проєкт
-- [ ] Додати тестування (unit tests)
+- FastAPI
+- Flask
+- Docker
+- Unit Testing (pytest)
+- REST APIs
 
 ---
 
-# 🧠 Підхід до кожного нового проєкту
+# 📖 Development Workflow
 
-Кожен новий проєкт повинен містити:
-- окрему папку
-- main.py (або структуровану модульну систему)
-- власний README з описом
-- короткий список реалізованого функціоналу
-- чеклист розвитку
+For every project I try to follow a structured workflow:
 
----
+- Create a dedicated feature branch
+- Implement one feature at a time
+- Write meaningful commits
+- Open a Pull Request
+- Review and merge into the main branch
 
-# 📈 Прогрес
-
-Файл `progress.md` використовується для:
-- фіксації етапів реалізації
-- рефлексії
-- планування наступних кроків
+This helps me learn professional version control practices alongside programming.
 
 ---
 
-# 🔮 Довгострокове бачення
+# 📈 Learning Philosophy
 
-Репозиторій поступово формується як:
-- база практичних інструментів
-- демонстрація зростання навичок
-- структурований технічний портфоліо‑проєкт
+This repository is not intended to contain perfect code.
 
-Це живий проєкт, який розвивається разом із моїм рівнем.
+Instead, it documents my progress as I learn new concepts, solve problems, refactor existing code, and gradually improve my software development skills.
 
-print("Універсальну документацію репозиторію оновлено успішно.")
+Every completed project represents another step forward.
+
+---
+
+# 📬 Feedback
+
+Suggestions, improvements, and constructive feedback are always welcome.
+
+I'm continuously learning and appreciate every opportunity to improve.
