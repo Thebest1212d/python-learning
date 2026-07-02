@@ -1,0 +1,11 @@
+Mitarbeiter,Inventarnummer,Stichwort,Seriennummer,Kaufdatum,Laufzeit,Garantie,Notizen,Kategorie IT,Erzeugt am,Modell
+Max Mustermann,IT-0001,Laptop,SN-LEN-123456,2024-01-15,48 Monate,2028-01-15,Hauptarbeitsplatz,Notebook,2024-01-15,Lenovo ThinkPad L14 Gen 5
+Erika Mustermann,IT-0002,Laptop,SN-DEL-654321,2023-10-03,36 Monate,2026-10-03,Vertrieb,Notebook,2023-10-03,Dell Latitude 5440
+Peter Schmidt,IT-0003,Desktop,SN-HP-987654,2022-08-20,60 Monate,2027-08-20,CAD Arbeitsplatz,Desktop,2022-08-20,HP Z2 G9 Tower
+Anna Becker,IT-0004,Monitor,SN-LG-852741,2024-03-11,36 Monate,2027-03-11,27 Zoll,Monitor,2024-03-11,LG 27QN880
+Thomas Fischer,IT-0005,Dockingstation,SN-LEN-741852,2024-01-15,36 Monate,2027-01-15,USB-C Dock,Dockingstation,2024-01-15,Lenovo ThinkPad Universal Dock
+Julia Wagner,IT-0006,Laptop,SN-LEN-963852,2025-02-05,48 Monate,2029-02-05,Projektentwicklung,Notebook,2025-02-05,Lenovo ThinkPad P16s
+Michael Hoffmann,IT-0007,Monitor,SN-DEL-369258,2023-11-18,36 Monate,2026-11-18,Homeoffice,Monitor,2023-11-18,Dell P2723D
+Sophie Klein,IT-0008,Smartphone,SN-SAM-258147,2024-06-01,24 Monate,2026-06-01,Diensthandy,Mobilgerät,2024-06-01,Samsung Galaxy S24
+Daniel Weber,IT-0009,Laptop,SN-HP-147258,2023-05-14,48 Monate,2027-05-14,Außendienst,Notebook,2023-05-14,HP EliteBook 860 G10
+Lisa Müller,IT-0010,Tablet,SN-APP-951357,2025-01-20,36 Monate,2028-01-20,Präsentationen,Tablet,2025-01-20,Apple iPad Air
