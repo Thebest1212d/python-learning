@@ -47,8 +47,6 @@ The repository will continue to evolve as I complete new projects and learn addi
 
 More projects and exercises will be added over time.
 
-More projects will be added over time.
-
 ---
 
 # 🛠 Technologies
