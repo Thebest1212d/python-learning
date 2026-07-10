@@ -22,13 +22,15 @@ This repository documents my journey of learning Python by building practical pr
 ```text
 python-learning/
 │
-├── cli_tools/          # Command-line applications
-├── automation/         # Automation scripts and utilities
-├── data_processing/    # Data analysis and processing projects
-├── api_projects/       # Projects using REST APIs
-├── courses/            # Exercises from online courses
-├── Exercises/          # Personal learning exercises
-├── archive/            # Archived or inactive projects
+├── cli_tools/              # Command-line applications
+├── automation/             # Automation scripts and utilities
+├── data_processing/        # CSV, Excel and Pandas projects
+├── api_projects/           # REST API projects
+├── courses/                # Exercises from online courses
+├── Exercises/              # Personal coding exercises
+├── archive/                # Archived or inactive projects
+│
+├── ROADMAP.md
 └── README.md
 ```
 

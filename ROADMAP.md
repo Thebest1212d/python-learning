@@ -1,21 +1,25 @@
 # Python Learning Roadmap
 
-## Completed
+## Python
+- [x] Basics
+- [x] Functions
+- [x] OOP
 
-- Cost Manager
-  - Python basics
-  - OOP
-  - SQLite
-  - CRUD
-  - Git workflow with branches and pull requests
+## SQLite
+- [x] CRUD
 
-## Next Learning Path
+## Pandas
+- [x] Reading CSV
+- [x] Filtering
+- [x] Grouping
+- [x] Reports
 
-1. CSV Analyzer with Pandas
-2. Ticket Report with Pandas
-3. FastAPI basics
-4. REST API project
-5. Docker basics for Python apps
-6. SQLAlchemy
-7. pytest
-8. Small Web App
+## Current Project
+- [ ] Inventory Analyzer
+
+## Next
+- [ ] FastAPI
+- [ ] REST API
+- [ ] SQLAlchemy
+- [ ] pytest
+- [ ] Docker
